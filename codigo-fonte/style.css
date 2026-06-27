@@ -75,11 +75,22 @@ h1 {
 }
 
 #mapa {
+  position: relative;
   height: 460px;
+  width: 100%;
   border-radius: 14px;
   margin-top: 14px;
   overflow: hidden;
   border: 1px solid #dce8df;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.leaflet-tile {
+  max-width: none !important;
 }
 
 form {

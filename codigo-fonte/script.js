@@ -60,10 +60,14 @@ function salvarPontos(pontos) {
 function inicializarMapa() {
   mapa = L.map("mapa").setView([-24.9555, -53.4552], 13);
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
     maxZoom: 19,
-    attribution: "&copy; OpenStreetMap"
+    attribution: "Tiles &copy; Esri"
   }).addTo(mapa);
+
+  setTimeout(() => {
+    mapa.invalidateSize();
+  }, 500);
 }
 
 function atualizarMarcadores(pontos) {
