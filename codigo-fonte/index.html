@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoPonto Cascavel</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Mapa com Leaflet/OpenStreetMap -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIINfQO5gG3HAaNqD21hYnG15mR2l0zH5Xc="
+    crossorigin=""
+  />
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <p class="tag">Cascavel - PR</p>
+      <h1>EcoPonto</h1>
+      <p class="subtitulo">
+        Encontre e organize pontos de coleta seletiva de forma simples.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="painel destaque">
+      <div>
+        <h2>Pontos de coleta</h2>
+        <p>
+          Cadastre, consulte, edite e exclua pontos de descarte de baterias,
+          eletrônicos, óleo, remédios e outros materiais.
+        </p>
+      </div>
+      <a href="#formulario" class="botao">Cadastrar ponto</a>
+    </section>
+
+    <section class="grid-principal">
+      <div class="painel">
+        <h2>Mapa</h2>
+        <div id="mapa"></div>
+        <p class="observacao">
+          Caso o ponto cadastrado não tenha latitude e longitude, ele será exibido no centro de Cascavel para fins de demonstração.
+        </p>
+      </div>
+
+      <div class="painel" id="formulario">
+        <h2 id="tituloFormulario">Cadastrar novo ponto</h2>
+
+        <form id="pontoForm">
+          <input type="hidden" id="pontoId" />
+
+          <label for="nome">Nome do ponto</label>
+          <input type="text" id="nome" placeholder="Ex: Farmácia Central" required />
+
+          <label for="categoria">Tipo de coleta</label>
+          <select id="categoria" required>
+            <option value="">Selecione</option>
+            <option value="Baterias">Baterias</option>
+            <option value="Eletrônicos">Eletrônicos</option>
+            <option value="Óleo">Óleo</option>
+            <option value="Remédios">Remédios</option>
+            <option value="Recicláveis">Recicláveis</option>
+            <option value="Outros">Outros</option>
+          </select>
+
+          <label for="endereco">Endereço</label>
+          <input type="text" id="endereco" placeholder="Ex: Rua Paraná, 1000" required />
+
+          <label for="bairro">Bairro</label>
+          <input type="text" id="bairro" placeholder="Ex: Centro" required />
+
+          <div class="duas-colunas">
+            <div>
+              <label for="latitude">Latitude</label>
+              <input type="number" id="latitude" step="any" placeholder="-24.9555" />
+            </div>
+
+            <div>
+              <label for="longitude">Longitude</label>
+              <input type="number" id="longitude" step="any" placeholder="-53.4552" />
+            </div>
+          </div>
+
+          <label for="descricao">Observação</label>
+          <textarea id="descricao" rows="3" placeholder="Ex: Coleta disponível em horário comercial"></textarea>
+
+          <div class="acoes-form">
+            <button type="submit" class="botao">Salvar</button>
+            <button type="button" id="cancelarEdicao" class="botao secundario escondido">Cancelar edição</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-lista">
+        <div>
+          <h2>Consulta de pontos cadastrados</h2>
+          <p>Use o campo abaixo para filtrar por nome, bairro ou tipo de coleta.</p>
+        </div>
+
+        <input type="text" id="busca" placeholder="Buscar ponto..." />
+      </div>
+
+      <div id="listaPontos" class="lista-pontos"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>EcoPonto Cascavel - Projeto acadêmico</p>
+  </footer>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin="">
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
